@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+     					http://www.springframework.org/schema/beans/spring-beans-4.0.xsd" >
+     					
+	<bean id="adminService" class="com.mrmq.poker.admin.impl.AdminService"></bean>
+	<bean id="pokerService" class="com.mrmq.poker.service.impl.PokerService"></bean>
+	<bean id="heartbeatService" class="com.mrmq.poker.service.impl.Heartbeat">
+		<property name="heartbeatInterval" value="${server.heartbeatInterval}" />
+	</bean>
+</beans>

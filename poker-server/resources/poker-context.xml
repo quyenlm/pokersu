@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+     					http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+      					http://www.springframework.org/schema/util
+       					http://www.springframework.org/schema/util/spring-util-4.0.xsd"
+	xmlns:util="http://www.springframework.org/schema/util">
+	
+	<import resource="poker-config.xml" />
+	<import resource="porker-db-manager.xml" />
+	<import resource="porker-business.xml" />
+	<import resource="poker-services.xml" />
+	
+	<bean id="pokerMananger" class="com.mrmq.poker.manager.PokerMananger">
+		<property name="services">
+			<util:map id="map" map-class="java.util.concurrent.ConcurrentHashMap">
+				<entry key="poker" value-ref="pokerService" />
+				<entry key="admin" value-ref="adminService" />
+			</util:map>
+		</property>
+	</bean>
+
+	<!-- bean definitions here -->
+	<bean id="pokerServer" class="com.mrmq.poker.servlet.PokerServer">
+		<property name="ssl" value="${server.ssl}" />
+		<property name="port" value="${server.port}" />
+	</bean>
+	
+	<!-- bean definitions here -->
+	<bean id="adminServer" class="com.mrmq.poker.admin.impl.AdminServer">
+		<property name="ssl" value="${admin.server.ssl}" />
+		<property name="port" value="${admin.server.port}" />
+	</bean>
+</beans>

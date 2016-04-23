@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mrmq</groupId>
+		<artifactId>poker-parent</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>poker-business</artifactId>
+	<version>${poker-business.version}</version>
+	<name>poker-business</name>
+
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<!-- START components -->
+		<dependency>
+			<groupId>com.mrmq</groupId>
+			<artifactId>poker-db</artifactId>
+			<version>${poker-db.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mrmq</groupId>
+			<artifactId>poker-common</artifactId>
+			<version>${poker-common.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mrmq</groupId>
+			<artifactId>poker-util</artifactId>
+			<version>${poker-util.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.mrmq</groupId>
+			<artifactId>poker-gateway</artifactId>
+			<version>${poker-gateway.version}</version>
+		</dependency>
+		<!-- END components -->
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<!-- start MySQL connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>${tomcat-jdbc.version}</version>
+		</dependency>
+
+		<!-- end MySQL connector -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+
+		<!-- Hibernate framework -->
+	</dependencies>
+</project>

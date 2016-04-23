@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 7, 2015 11:00:33 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.mrmq.poker.db.entity.PkGameHistory" table="pk_game_history">
+        <id name="gameHistoryId" type="java.lang.Integer">
+            <column name="GAME_HISTORY_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="gameId" type="string">
+            <column name="GAME_ID" length="16" not-null="true" />
+        </property>
+        <property name="creater" type="int">
+            <column name="CREATER" not-null="true" />
+        </property>
+        <property name="players" type="string">
+            <column name="PLAYERS" not-null="true" />
+        </property>
+        <property name="joinPlayer" type="int">
+            <column name="JOIN_PLAYER" not-null="true" />
+        </property>
+        <property name="maxPlayer" type="int">
+            <column name="MAX_PLAYER" not-null="true" />
+        </property>
+        <property name="minBet" type="big_decimal">
+            <column name="MIN_BET" precision="15" not-null="true" />
+        </property>
+        <property name="maxBet" type="big_decimal">
+            <column name="MAX_BET" precision="15" not-null="true" />
+        </property>
+        <property name="totalBet" type="big_decimal">
+            <column name="TOTAL_BET" precision="15" not-null="true" />
+        </property>
+        <property name="currency" type="string">
+            <column name="CURRENCY" length="16" not-null="true" />
+        </property>
+        <property name="comment" type="string">
+            <column name="COMMENT" length="64" />
+        </property>
+        <property name="status" type="int">
+            <column name="STATUS" not-null="true" />
+        </property>
+        <property name="startTime" type="timestamp">
+            <column name="START_TIME" length="19" not-null="true" />
+        </property>
+        <property name="endTime" type="timestamp">
+            <column name="END_TIME" length="19" not-null="true" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UPDATE_DATE" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
