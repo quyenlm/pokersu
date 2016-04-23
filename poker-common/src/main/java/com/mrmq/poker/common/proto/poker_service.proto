@@ -1,0 +1,168 @@
+import "poker_model.proto";
+
+option java_package = "com.mrmq.poker.common.proto";
+option java_outer_classname = "PokerServiceProto";
+
+message RoomRequest {
+	required string hallId = 1;
+}
+
+message RoomResponse {
+	required string hallId = 1;
+	repeated Room rooms = 2;
+}
+
+message TableRequest {
+	required string roomId = 1;
+}
+
+message TableResponse {
+	required string roomId = 1;
+	repeated Table tables = 2;
+}
+
+enum JoinTableType {
+	PLAY = 1;
+	VIEW = 2;
+	STAND_UP = 3;
+	LEAVE = 4;
+}
+	
+//Join/Reconnect to game
+message JoinTableRequest {
+	required string tableId = 1;
+	required JoinTableType joinType = 2;
+	required int32 selectedPosition = 3;
+}
+
+//Join/Reconnect to game
+message JoinTableResponse {
+	//stateplaying,timeperturn,minmoney,maxmoney,blind,[centermoney*], me, [player],[curbet],curplayerid,remaintime,[centerCard*],dealerId,slots_count], [history_card*]};
+	
+	optional RoundType roundType = 1;
+	optional TableRule tableRule = 2;
+	
+	repeated Player players = 4;
+	
+	optional int64 curbet = 5;
+	optional string curPlayerId = 6;
+	repeated Card centerCards = 7;
+	optional string dealerId = 8;
+	optional int32 remainTime = 9;
+	repeated Card historyCards = 11;
+}
+
+message JoinTableEvent {
+	required JoinTableType joinType = 2;
+	required Player player = 4;
+}
+
+message LeaveTableEvent {
+	//[indesk,deskstate, userleave,hatde, usermaster,nextplayer, reason, msg, acc]
+	optional RoundType roundType = 1;
+	optional PlayerState inRound = 2;
+	optional string userLeaveId = 3;
+	optional string nextPlayer = 4;
+	optional string reason = 5;
+	optional string msg = 6;
+}
+
+message PlayerAction {
+	required string playerId = 1;
+	required ActionType actionType = 2;
+	optional int64 amount = 3;
+}
+
+message PlayerActionRequest {
+	required string tableId = 1;
+	required PlayerAction action = 2;
+}
+
+message PlayerActionResponse {
+	optional RoundType roundType = 1;
+	
+	//{"ok":[actionid,action,sotien,buymoney,totalmoney,endround,nextplayer, [center_chip*]]}
+	
+	required ActionType actionType = 10;
+	required int64 remainAmount = 11;
+	required int64 raiseAmount = 12;
+	required int64 totalRaiseAmount = 13;
+	
+	repeated Chip centerChips = 20;
+	optional string nextPlayerId = 21;
+}
+
+message PlayerActionEvent {
+	optional RoundType roundType = 1;
+	
+	//{"ok":[actionid,action,sotien,buymoney,totalmoney,endround,nextplayer, [center_chip*]]}
+	
+	required string playerId = 9;
+	required ActionType actionType = 10;
+	required int64 remainAmount = 11;
+	required int64 raiseAmount = 12;
+	required int64 totalRaiseAmount = 13;
+	
+	repeated Chip centerChips = 20;
+	optional string nextPlayerId = 21;
+}
+
+message StartGameEvent {
+	//[tenvongdau, dear,[[userid,[card*], tiendat, tienconlai, rank, actionid, action]*], nexplayer]
+	
+	required RoundType roundType = 1;
+	required string dealerId = 2;
+	required string smallBlindId = 3;
+	required string bigBlindId = 4;
+	repeated Player players = 5;
+	required string nextPlayerId = 6;
+}
+
+message NewRoundEvent {
+	//[tenvong, [center_chip*],  [addcards*], myrank, firstplayer]
+
+	required RoundType roundType = 1;
+	repeated Chip centerChips = 2;
+	repeated Card addCards = 3;
+	required HandValue myRank = 4;
+	required string firstPlayerId = 5;
+}
+
+message EndGameEvent {
+	//"[endstate,[handcards*],[layer*], [center_chip*],  [history_card*]]
+	//handcards = [playerid,[card*]]
+	//layer = [[player*], [center_chip*], rank]
+	//player = [playerid,[wincard*],hatdeadd,buyMoney,totalMoney]  - trường hợp bình thường 2"
+	
+	required RoundType roundType = 1;
+	repeated Chip centerChips = 2;
+	repeated Card historyCards = 3;
+	repeated Player players = 4;
+}
+
+message AllInEvent {
+	//[handcards*]
+	//handcards = [playerid,[card*]]
+	
+	repeated Player players = 1;
+}
+
+message DealerEvent {
+	//[[[userid, card]*], ['dealer', card]]
+	
+	required string dealerId = 1;
+	required Card dealerCard = 2;
+	
+	repeated string playerIds = 3;
+	repeated Card playerCards = 4;
+}
+
+message OutOfMoneyEvent {
+	//[msg,hatde,hatdeconlai,minmoney,maxmoney]
+	
+	required string msg = 1;
+	required int64 amount = 2;
+	required int64 remainAmount = 3;
+	required int64 minAmount = 4;
+	required int64 maxAmount = 5;
+}

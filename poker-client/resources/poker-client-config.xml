@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>poker-client-config.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="configs" class="com.mrmq.poker.client.setting.Configs">
+		<property name="pokerUrl" value="${poker.url}" />
+		<property name="adminUrl" value="${admin.url}" />
+		
+		<property name="serverHeartbeatInterval" value="${server.heartbeatInterval}" />
+		<property name="threadPoolSize" value="${thread.poolSize}" />
+		
+		<property name="pokerProtoVersion" value="${poker.protoVersion}" />
+		
+		<property name="adminProtoVersion" value="${admin.protoVersion}" />
+		<property name="adminLoadUserTime" value="${admin.loadUserTime}" />
+		<property name="adminLoadUserTimeout" value="${admin.loadUserTimeout}" />
+	</bean>
+	
+	<bean id="msgs"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>poker-client-msg.properties</value>
+			</list>
+		</property>
+	</bean>
+</beans>

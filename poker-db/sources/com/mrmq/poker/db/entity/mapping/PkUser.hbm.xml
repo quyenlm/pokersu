@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 2, 2015 12:16:55 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.mrmq.poker.db.entity.PkUser" table="pk_user">
+        <id name="userId" type="java.lang.Integer">
+            <column name="USER_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="login" type="string">
+            <column name="LOGIN" length="32" not-null="true" />
+        </property>
+        <property name="pass" type="string">
+            <column name="PASS" length="32" not-null="true" />
+        </property>
+        <property name="userGroup" type="string">
+            <column name="USER_GROUP" length="16" not-null="true" />
+        </property>
+        <property name="userName" type="string">
+            <column name="USER_NAME" length="128" not-null="true" />
+        </property>
+        <property name="avataUrl" type="string">
+            <column name="AVATA_URL" length="512" />
+        </property>
+        <property name="country" type="string">
+            <column name="COUNTRY" length="32" />
+        </property>
+        <property name="city" type="string">
+            <column name="CITY" length="32" />
+        </property>
+        <property name="state" type="string">
+            <column name="STATE" length="32" />
+        </property>
+        <property name="zipcode" type="string">
+            <column name="ZIPCODE" length="16" />
+        </property>
+        <property name="address" type="string">
+            <column name="ADDRESS" length="128" />
+        </property>
+        <property name="phone" type="string">
+            <column name="PHONE" length="32" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="48" />
+        </property>
+        <property name="balance" type="big_decimal" update="false">
+            <column name="BALANCE" precision="15" not-null="true" />
+        </property>
+        <property name="prevBalance" type="big_decimal" update="false">
+            <column name="PREV_BALANCE" precision="15" not-null="true" />
+        </property>
+        <property name="credit" type="big_decimal" update="false">
+            <column name="CREDIT" precision="15" not-null="true" />
+        </property>
+        <property name="taxes" type="big_decimal">
+            <column name="TAXES" precision="15" not-null="true" />
+        </property>
+        <property name="currency" type="string">
+            <column name="CURRENCY" length="16" not-null="true" />
+        </property>
+        <property name="pubKey" type="string">
+            <column name="PUB_KEY" length="1024" />
+        </property>
+        <property name="status" type="int">
+            <column name="STATUS" not-null="true" />
+        </property>
+        <property name="comment" type="string">
+            <column name="COMMENT" length="64" />
+        </property>
+        <property name="regDate" type="timestamp">
+            <column name="REG_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UPDATE_DATE" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

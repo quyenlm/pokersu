@@ -1,0 +1,20 @@
+import "admin_model.proto";
+import "poker_model.proto";
+import "manager_model.proto";
+
+option java_package = "com.mrmq.poker.common.proto";
+option java_outer_classname = "ManagerServiceProto";
+
+message UsersRequest {
+	required UserType userType = 1;
+}
+
+message UsersResponse {
+	required UserType userType = 1;
+	repeated User users = 5;
+}
+
+//User Join/Reconnect to game
+message JoinTableRequestEvent {
+	required Table table = 1;
+}

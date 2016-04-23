@@ -1,0 +1,36 @@
+import "admin_model.proto";
+
+option java_package = "com.mrmq.poker.common.proto";
+option java_outer_classname = "AdminServiceProto";
+
+message LoginRequest {
+	required string loginId = 1;
+	required string pass = 2;
+}
+
+message LoginResponse {
+	optional User user = 1;
+}
+
+message UpdateUserRequest {	
+	required User user = 1;
+	required UserRequestCommand command = 2;
+	
+	enum UserRequestCommand {
+		REGISTER = 0;
+		UPDATE = 1;
+		DELETE = 9;
+	}
+}
+
+message UpdateUserResponse {
+	optional User user = 1;
+}
+
+message DepositRequest {
+	required DepositInfo depositInfo = 1;
+}
+
+message DepositResponse {
+	required DepositInfo depositInfo = 1;
+}
