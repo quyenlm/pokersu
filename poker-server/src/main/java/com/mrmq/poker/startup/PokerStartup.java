@@ -20,6 +20,14 @@ public class PokerStartup {
 	private static ExecutorService executorService = Executors.newFixedThreadPool(3);
 	
 	public static void main( String[] args ) throws Exception {
+		int port = 8080;
+		try {
+			port = Integer.valueOf(System.getenv("PORT"));
+			System.out.println("getenv PORT: " + port);
+		} catch (Exception e) {
+			System.out.println("cannot get getenv PORT, use default port: " + port);
+		}
+		System.out.println("starting server with port: " + port);
     	final ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:poker-context.xml");
     	
 //    	demo();
@@ -27,6 +35,8 @@ public class PokerStartup {
     	PokerMananger.start(context);
     	
     	final Server pokerServer = (PokerServer) context.getBean("pokerServer");
+    	pokerServer.setPort(port);
+    	
     	final Server adminServer = (AdminServer) context.getBean("adminServer");
     	final Service adminService = PokerMananger.getService(ServiceType.ADMIN.getValue());
     	
