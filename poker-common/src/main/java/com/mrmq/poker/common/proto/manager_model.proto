@@ -1,9 +1,0 @@
-option java_package = "com.mrmq.poker.common.proto";
-option java_outer_classname = "ManagerModelProto";
-
-enum UserType {
-	ALL = 1;
-	BOT = 2;
-	PLAYER = 3;
-}
-
