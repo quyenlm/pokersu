@@ -1,1 +1,1 @@
-web:    java -cp poker-server/target/classes:target/dependency/* com.mrmq.poker.startup.PokerStartup -p $PORT
+web:    java -cp poker-server/target/classes:target/dependency/*:poker-server/target/copy-dependencies com.mrmq.poker.startup.PokerStartup -p $PORT
